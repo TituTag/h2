@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>USMC - Hierarquia de Elite</title>
+
+ <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+ <style>
+
+  body {
+   margin: 0;
+   padding: 0;
+
+   background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 50%, #2a0505 100%);
+   font-family: 'Roboto', sans-serif; 
+   color: #e0e0e0; 
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-attachment: fixed;
+   overflow-x: hidden; 
+  }
+
+
+  .container {
+   width: 90%; 
+   max-width: 1100px;
+   margin: 40px auto;
+   background: rgba(17, 17, 17, 0.95); 
+   border-radius: 12px; 
+   padding: 50px; 
+ 
+   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8), 0 0 0 3px rgba(139, 0, 0, 0.4) inset;
+   border: 1px solid rgba(255, 192, 0, 0.3);
+   animation: slide-in 0.8s ease-out; 
+  }
+
+  @keyframes slide-in {
+   from { opacity: 0; transform: translateY(30px) scale(0.95); }
+   to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+
+  .top-header {
+   text-align: center;
+   margin-bottom: 50px;
+   padding-bottom: 35px;
+   border-bottom: 3px solid rgba(255, 192, 0, 0.5); 
+   position: relative;
+  }
+
+
+  .top-header::after {
+   content: '';
+   display: block;
+   width: 40%;
+   height: 2px;
+   background: linear-gradient(to right, transparent, #FFC000, transparent); 
+   position: absolute;
+   bottom: -2px;
+   left: 30%;
+   filter: blur(4px); 
+  }
+
+  .top-header img {
+   width: 150px; 
+   height: 150px;
+   object-fit: contain;
+   border-radius: 50%;
+   border: 6px solid #8B0000; 
+   background-color: #0d0d0d; 
+   padding: 10px;
+   box-shadow: 0 0 35px rgba(255, 192, 0, 0.7); 
+   transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+  }
+
+  .top-header img:hover {
+   transform: scale(1.08); 
+   box-shadow: 0 0 50px rgba(255, 192, 0, 1); 
+  }
+
+
+  .top-header h1 {
+   font-family: 'Oswald', sans-serif; 
+   font-size: 3.5em; 
+   color: #FFC000; 
+   margin-top: 30px;
+   font-weight: 700;
+   text-shadow: 0 0 25px rgba(255, 192, 0, 0.8), 0 0 10px rgba(139, 0, 0, 0.6); 
+   letter-spacing: 4px;
+   text-transform: uppercase; 
+  }
+
+  .top-header p {
+   font-family: 'Roboto', sans-serif;
+   color: #b0b0b0; 
+   font-size: 1.4em;
+   margin-top: 15px;
+   letter-spacing: 1.8px;
+   font-weight: 300;
+  }
+
+
+  table {
+   width: 100%;
+   border-collapse: separate;
+   border-spacing: 4px 15px; 
+   margin-top: 50px;
+  }
+
+
+  th, td {
+   padding: 25px 35px; 
+   text-align: left;
+   background: rgba(30, 30, 30, 0.9); 
+   border: 1px solid rgba(255, 192, 0, 0.15); 
+   border-radius: 10px; 
+   transition: all 0.3s ease-out; 
+  }
+
+
+  th {
+   background-color: rgba(139, 0, 0, 0.2); 
+   color: #FFC000;
+   text-transform: uppercase;
+   font-family: 'Oswald', sans-serif;
+   font-size: 1.2em;
+   font-weight: 600;
+   letter-spacing: 0.15em;
+   text-shadow: 0 0 10px rgba(255, 192, 0, 0.5);
+   border-bottom: 3px solid #FFC000; 
+   position: sticky;
+   top: 0;
+   z-index: 10;
+  }
+
+
+  td {
+   font-family: 'Roboto', sans-serif;
+   font-size: 1.15em;
+   color: #dcdcdc; 
+   vertical-align: middle; 
+  }
+
+
+  tbody tr {
+   transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  tbody tr:hover {
+   background-color: rgba(139, 0, 0, 0.15); 
+   transform: translateY(-7px); 
+   box-shadow: 3 15px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 192, 0, 0.4); 
+  }
+
+  
+  .insignia-img {
+
+   max-width: 90px; 
+   max-height: 90px; 
+   width: auto; 
+   height: auto; 
+   object-fit: contain; 
+   border-radius: 1px; 
+   border: 1px solid #FFC000; 
+   background-color: #080808; 
+   box-shadow: 0 0 15px rgba(255, 192, 0, 0.7); 
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .insignia-img:hover {
+   transform: scale(1.12); 
+   box-shadow: 0 0 25px rgba(255, 192, 0, 1); 
+  }
+
+  
+  @media (max-width: 1024px) {
+   .container {
+    padding: 40px;
+    margin: 30px auto;
+   }
+   .top-header h1 {
+    font-size: 3em;
+   }
+   .top-header p {
+    font-size: 1.2em;
+   }
+   th, td {
+    padding: 20px 25px;
+    font-size: 1.05em;
+   }
+   .insignia-img {
+    max-width: 80px; 
+    max-height: 80px; 
+   }
+   table {
+    border-spacing: 0 15px;
+   }
+  }
+
+  @media (max-width: 768px) {
+   .container {
+    margin: 20px;
+    padding: 30px;
+    border-radius: 10px;
+   }
+   .top-header img {
+    width: 130px;
+    height: 130px;
+    border-width: 5px;
+   }
+   .top-header h1 {
+    font-size: 2.5em;
+    letter-spacing: 2px;
+   }
+   .top-header p {
+    font-size: 1.1em;
+   }
+   th, td {
+    padding: 15px 20px;
+    font-size: 0.95em;
+   }
+   .insignia-img {
+    max-width: 65px;
+    max-height: 65px; 
+    border-width: 2px;
+   }
+   table {
+    border-spacing: 0 10px;
+   }
+  }
+
+  @media (max-width: 480px) {
+   .container {
+    margin: 15px;
+    padding: 20px;
+    border-radius: 8px;
+   }
+   .top-header img {
+    width: 100px;
+    height: 100px;
+    border-width: 4px;
+   }
+   .top-header h1 {
+    font-size: 2em;
+    letter-spacing: 1px;
+   }
+   .top-header p {
+    font-size: 0.9em;
+   }
+   th, td {
+    padding: 12px 15px;
+    font-size: 0.85em;
+   }
+   .insignia-img {
+    max-width: 50px; 
+    max-height: 50px; 
+    border-width: 2px;
+    border-radius: 5px;
+   }
+   table {
+    border-spacing: 0 8px;
+   }
+  }
+ </style>
+</head>
+<body>
+ <div class="container">
+  <div class="top-header">
+   <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Emblem_of_the_United_States_Marine_Corps.svg" alt="Emblema do USMC">
+   <h1>United States Marine Corps</h1>
+   <p>USMC - Sistema Interno Hierarquia</p>
+  </div>
+
+  <table>
+   <thead>
+    <tr>
+     <th>Insignia</th>
+     <th>Patente</th>
+     <th>Designado</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/colonel.png" class="insignia-img" alt="Insígnia de Colonel"></td>
+     <td>Colonel (Col)</td>
+     <td>Maccall G.</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/lieutenant-colonel.png" class="insignia-img" alt="Insígnia de Lieutenant Colonel"></td>
+     <td>Lieutenant Colonel (LtCol)</td>
+     <td>Marcos V.</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/major.png" class="insignia-img" alt="Insígnia de Major"></td>
+     <td>Major (Maj)</td>
+     <td>Jhon Carter R.</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/captain.png" class="insignia-img" alt="Insígnia de Captain"></td>
+     <td>Captain (Capt)</td>
+     <td>T. Schimdt</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/first-lieutenant.png" class="insignia-img" alt="Insígnia de 1stLt"></td>
+     <td>First Lieutenant (1stLt)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/second-lieutenant.png" class="insignia-img" alt="Insígnia de 2stLt"></td>
+     <td>Second Lieutenant (2stLt)</td>
+     <td>A. Figueiredo</td>
+    </tr>
+        <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/chief-warrant-officer-5.png" class="insignia-img" alt="Insígnia de Chief Warrant Officer 5"></td>
+     <td>Chief Warrant Officer 5 (CW5)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/chief-warrant-officer-4.png" class="insignia-img" alt="Insígnia de Chief Warrant Officer 4"></td>
+     <td>Chief Warrant Officer 4 (CW4)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/chief-warrant-officer-3.png" class="insignia-img" alt="Insígnia de Chief Warrant Officer 3"></td>
+     <td>Chief Warrant Officer 3 (CW3)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/chief-warrant-officer-2.png" class="insignia-img" alt="Insígnia de Chief Warrant Officer 2"></td>
+     <td>Chief Warrant Officer 2 (CW2)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/warrant-officer-1.png" class="insignia-img" alt="Insígnia de Warrant Officer 1"></td>
+     <td>Warrant Officer 1 (WO1)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/sergeant-major-of-the-marine-corps.png" class="insignia-img" alt="Insígnia de Sergeant Major of the Marine Corps"></td>
+     <td>SgtMaj of the Marine Corps (SgtMajMC)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/sergeant-major.png" class="insignia-img" alt="Insígnia de Sergeant Major"></td>
+     <td>Sergeant Major (SgtMaj)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/master-gunnery-sergeant.png" class="insignia-img" alt="Insígnia de Master Gunnery Sergeant"></td>
+     <td>Master Gunnery Sergeant (MGySgt)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/first-sergeant.png" class="insignia-img" alt="Insígnia de First Sergeant"></td>
+     <td>First Sergeant (1stSgt)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/master-sergeant.png" class="insignia-img" alt="Insígnia de Master Sergeant"></td>
+     <td>Master Sergeant (MSgt)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/gunnery-sergeant.png" class="insignia-img" alt="Insígnia de Gunnery Sergeant"></td>
+     <td>Gunnery Sergeant (GySgt)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/staff-sergeant.png" class="insignia-img" alt="Insígnia de Staff Sergeant"></td>
+     <td>Staff Sergeant (SSgt)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/sergeant.png" class="insignia-img" alt="Insígnia de Sergeant"></td>
+     <td>Sergeant (Sgt)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/corporal.png" class="insignia-img" alt="Insígnia de Corporal"></td>
+     <td>Corporal (Cpl)</td>
+     <td>-</td>
+    </tr>
+
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/private-first-class.png" class="insignia-img" alt="Insígnia de Private First Class"></td>
+     <td>Private First Class (PFC)</td>
+     <td>-</td>
+    </tr>
+    <tr>
+     <td><img src="https://www.federalpay.org/resources/img/ranks/marinecorps/private.png" class="insignia-img" alt="Insígnia de Private"></td>
+     <td>Private (Pvt)</td>
+     <td>-</td>
+    </tr>
+   </tbody>
+  </table>
+ </div>
+</body>
+</html>
